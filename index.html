@@ -68,7 +68,7 @@ button:hover{
 
 <div id="info">
 Score : <span id="score">0</span> |
-Temps : <span id="time">30</span>s |
+Temps : <span id="time">120</span>s |
 Record : <span id="best">0</span>
 </div>
 
@@ -76,7 +76,7 @@ Record : <span id="best">0</span>
 <button id="restart">🔄 Rejouer</button>
 <script>
 let score = 0;
-let temps = 60;
+let temps = 120;
 let meilleur = localStorage.getItem("record") || 0;
 
 document.getElementById("best").textContent = meilleur;
@@ -134,7 +134,7 @@ const chrono = setInterval(()>{
 restart.onclick = function()
 {
     score =0;
-    temps=60
+    temps=120
 
     scoreTxt.textContent=score;
     timeTxt.textContent=temps;
