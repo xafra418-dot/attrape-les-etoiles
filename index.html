@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Attrape les Étoiles</title>
+<style>
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+#game {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  border: 2px solid black;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>⭐ Attrape les Étoiles ⭐</h1>
+<p>Score : <span id="score">0</span></p>
+<p>Temps : <span id="time">30</span>s</p>
+
+<div id="game"></div>
+
+<script>
+let score = 0;
+let timeLeft = 30;
+const game = document.getElementById("game");
+
+function createStar() {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.textContent = "⭐";
+
+  star.style.left = Math.random() * (game.clientWidth - 40) + "px";
+  star.style.top = Math.random() * (game.clientHeight - 40) + "px";
+
+  star.onclick = () => {
+    score++;
+    document.getElementById("score").textContent = score;
+    star.remove();
+  };
+
+  game.appendChild(star);
+
+  setTimeout(() => {
+    if (star.parentNode) star.remove();
+  }, 1500);
+}
+
+const starInterval = setInterval(createStar, 700);
+
+const timer = setInterval(() => {
+  timeLeft--;
+  document.getElementById("time").textContent = timeLeft;
+
+  if (timeLeft <= 0) {
+    clearInterval(timer);
+    clearInterval(starInterval);
+    alert("Partie terminée ! Score : " + score);
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
