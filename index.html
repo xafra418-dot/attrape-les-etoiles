@@ -40,7 +40,6 @@ h1{
     font-size:45px;
     cursor:pointer;
     transition:transform .2s;
-}
 
 .star:hover{
     transform:scale(1.3);
@@ -118,7 +117,7 @@ function creerEtoile(){
 
 const apparition = setInterval(creerEtoile,600);
 
-const chrono = setInterval(()=>{
+const chrono = setInterval(()>{
     temps--;
     timeTxt.textContent = temps;
    if(temps <= 0){
@@ -132,7 +131,29 @@ const chrono = setInterval(()=>{
 
 },1000);
 
-restart.onclick = function(){
+restart.onclick = function()
+{
+    score =0;
+    temps=60
+
+    scoreTxt.textContent=score;
+    timeTxt.textContent=temps;
+    restart.style.display="none";
+     apparition=
+setInterval(creerEtoile, 700);
+    const chrono =setInterval(() => {
+        temps --;
+        timeTxt.textContent=
+temps;
+        if (temps<= 0)
+clearInterval(chrono);
+clearInterval(apparition);
+        alert("🎉 Partie terminée !\n\nTon score est : " + score);
+restart.style.display="inline-block";}
+    } , 1000);
+    };
+
+
     location.reload();
 };
 </script>
